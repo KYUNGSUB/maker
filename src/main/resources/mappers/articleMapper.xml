@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talanton.platform.mapper.ArticleMapper">
+	<insert id="create">
+		<![CDATA[
+			insert into article (board_id, bName, bTitle, bContent, bGroup, bIp, bSecret)
+			values(#{board_id}, #{bName}, #{bTitle}, #{bContent}, #{bId}, #{bIp}, #{bSecret})
+		]]>
+	</insert>
+	
+	<select id="read" resultType="com.talanton.platform.article.domain.ArticleVO">
+		select * from article where bId = #{bId}
+	</select>
+	
+	<update id="upHit">
+		update article set bHit = bHit + 1 where bId = #{bId}
+	</update>
+	
+	<update id="update">
+		update article set bName = #{bName}, bTitle = #{bTitle}, bContent = #{bContent}
+		where bId = #{bId}
+	</update>
+	
+	<delete id="delete">
+		delete from article where bId = #{bId}
+	</delete>
+	
+	<select id="listAll" resultType="com.talanton.platform.article.domain.ArticleVO">
+	<![CDATA[
+		select * from article order by bGroup desc, bStep asc
+	]]>
+	</select>
+	
+	<select id="replyView" resultType="com.talanton.platform.article.domain.ArticleVO">
+		select * from article where bId = #{bId}
+	</select>
+	
+	<update id="replyShape">
+		update article set bStep = bStep + 1 where bGroup = #{bGroup} and bStep > #{bStep}
+	</update>
+	
+	<insert id="reply">
+		insert into article (board_id, bName, bTitle, bContent, bGroup, bStep, bIndent, bIp, bSecret) values (#{board_id}, #{bName}, #{bTitle}, #{bContent}, #{bGroup}, #{bStep}+1, #{bIndent}+1, #{bIp}, #{bSecret})
+	</insert>
+
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+	select count(bId) from article where bId > 0
+	]]>
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and bTitle like CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and bContent like CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and bName like CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and bTitle like CONCAT(CONCAT('%', #{keyword}), '%')
+					OR bContent like CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and bContent like CONCAT(CONCAT('%', #{keyword}), '%')
+					OR bName like CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and bTitle like CONCAT(CONCAT('%', #{keyword}), '%')
+					OR bContent like CONCAT(CONCAT('%', #{keyword}), '%')
+					OR bName like CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listSearch" resultType="com.talanton.platform.article.domain.ArticleVO">
+	<![CDATA[
+	select *
+	from article
+	where board_id = #{board_id} and bId > 0
+	]]>
+	
+	<include refid="search"></include>
+	
+	<![CDATA[
+	order by bGroup desc, bStep asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+	<![CDATA[
+	select count(bId) from article where board_id = #{board_id} and bId > 0
+	]]>
+	
+	<include refid="search"></include>
+	</select>
+	
+	<insert id="addAttach">
+	insert into attach (fullName, bId) values (#{fullName}, #{bId})
+	</insert>
+	
+	<select id="getAttach" resultType="string">
+	select fullName from attach where bId = #{bId} order by regdate
+	</select>
+	
+	<delete id="deleteAttach">
+	delete from attach where bId = #{bId}
+	</delete>
+	
+	<insert id="replaceAttach">
+	insert into attach (fullName, bId) values (#{fullName}, #{bId})
+	</insert>
+	
+	<select id="getLastId" resultType="Object">
+	select max(bId) from article
+	</select>
+</mapper>

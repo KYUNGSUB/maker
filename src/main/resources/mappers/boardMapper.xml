@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talanton.platform.mapper.BoardMapper">
+	<insert id="create">
+		<![CDATA[
+			insert into board (board_name, board_type, url, secret, read_allow, write_allow, reply, modify, remove, download, upload, nAttach, aSize, display_format, board_desc)
+			values(#{board_name}, #{board_type}, #{url}, #{secret}, #{read_allow}, #{write_allow}, #{reply}, #{modify}, #{remove}, #{download}, #{upload}, #{nAttach}, #{aSize}, #{display_format}, #{board_desc})
+		]]>
+	</insert>
+	
+	<select id="read" resultType="com.talanton.platform.board.domain.BoardVO">
+		select * from board where board_id = #{board_id}
+	</select>
+
+	<update id="update">
+		update board set board_name = #{board_name}, board_type = #{board_type}, url = #{url}, secret = #{secret}, read_allow = #{read_allow}, write_allow = #{write_allow},
+		reply = #{reply}, modify = #{modify}, remove = #{remove}, download = #{download}, upload = #{upload}, nAttach = #{nAttach}, aSize = #{aSize}, display_format = #{display_format}, board_desc = #{board_desc}
+		where board_id = #{board_id}
+	</update>
+	
+	<delete id="delete">
+		delete from board where board_id = #{board_id}
+	</delete>
+	
+	<select id="listAll" resultType="com.talanton.platform.board.domain.BoardVO">
+	<![CDATA[
+		select * from board order by bGroup desc, bStep asc
+	]]>
+	</select>
+	
+	<select id="replyView" resultType="com.talanton.platform.board.domain.BoardVO">
+		select * from board where bId = #{bId}
+	</select>
+	
+	<update id="replyShape">
+		update board set bStep = bStep + 1 where bGroup = #{bGroup} and bStep > #{bStep}
+	</update>
+	
+	<insert id="reply">
+		insert into board (bName, bTitle, bContent, bGroup, bStep, bIndent) values (#{bName}, #{bTitle}, #{bContent}, #{bGroup}, #{bStep}, #{bIndent})
+	</insert>
+
+	<select id="listCriteria" resultType="com.talanton.platform.board.domain.BoardVO">
+	<![CDATA[
+	select *
+	from board
+	where board_id > 0
+	order by board_id asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+	select count(board_id) from board where board_id > 0
+	]]>
+	</select>
+	
+	<select id="listSearch" resultType="com.talanton.platform.board.domain.BoardVO">
+	<![CDATA[
+	select *
+	from board
+	where board_id > 0
+	order by board_id asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+	<![CDATA[
+	select count(bId) from board where bId > 0
+	]]>
+	</select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talanton.platform.mapper.EnvDataMapper">
+	<select id="getLastId" resultType="int">
+	select max(id) from env_data
+	</select>
+	
+	<insert id="insert">
+	insert into env_data (temperature, humidity, illuminate, soil_humid)
+	values (#{temperature}, #{humidity}, #{illuminate}, #{soil_humid})
+	</insert>
+	
+	<select id="loginPro" resultType="com.talanton.platform.member.domain.MemberVO">
+	select * from member where id = #{id}
+	</select>
+	
+	<update id="updateProfile">
+	update member set 
+	<if test="password != '1'.toString()">
+		password = #{password}, 
+	</if>
+	name = #{name}, mobile = #{mobile}, kind = #{kind}, modifiedAt = now()
+	where id = #{id}
+	</update>
+	
+	<update id="keepLogin">
+	update member set sessionKey = #{sessionId}, sessionLimit = #{next} where id = #{id}
+	</update>
+	
+	<select id="checkUserWithSessionKey" resultType="com.talanton.platform.member.domain.MemberVO">
+	select * from member where sessionKey = #{value} and sessionLimit > now()
+	</select>
+</mapper>

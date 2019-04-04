@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+#content form {
+	margin-top: 20px;
+	line-height: 2;
+}
+#content #addBtn {
+	width: 200px;
+	font-size: 14px;
+	padding: 10px;
+	background-color: blue;
+	color: white;
+	border-radius: 5px 5px 5px 5px;
+	margin-top:30px;
+}

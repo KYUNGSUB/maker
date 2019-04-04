@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talanton.platform.mapper.ParamterMapper">
+	<insert id="create">
+		<![CDATA[
+			insert into setting_item (parameterName, value, createdAt)
+			values(#{parameterName}, #{value}, now())
+		]]>
+	</insert>
+	
+	<select id="read" resultType="com.talanton.platform.parameter.domain.SettingItem">
+		select * from setting_item where parameterName = #{parameterName}
+	</select>
+
+	<update id="update">
+		update setting_item set value = #{value}
+		where parameterName = #{parameterName}
+	</update>
+	
+	<delete id="delete">
+		delete from setting_item where parameterName = #{parameterName}
+	</delete>
+
+	<select id="listCriteria" resultType="com.talanton.platform.parameter.domain.SettingItem">
+	<![CDATA[
+	select *
+	from setting_item
+	order by parameterName asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+	select count(parameterName) from setting_item
+	]]>
+	</select>
+</mapper>

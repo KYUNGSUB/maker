@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+#content table {
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin-top: 20px;
+}
+#content td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	padding: 5px;
+}
+#content #searchForm {
+	margin-top: 20px;
+	padding: 5px;
+}
+#content #searchForm #keyword {
+	padding: 5px;
+	border: 1px solid black;
+}
+#content #searchForm #submitBtn {
+	padding: 5px 20px;
+	background-color: #f3f3f3; 
+}
+#content .title_head {
+	text-align: center;
+}
+#content #section1 {
+	margin-top: 30px;
+}
+#pArea ul {
+	float: left;
+}
+#pArea li {
+	float: left;
+	padding: 0 10px;
+}

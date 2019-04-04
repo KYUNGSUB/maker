@@ -1,0 +1,291 @@
+@charset "UTF-8";
+/* header */
+#logo {
+	margin-top: 15px;
+	padding: 5px;
+	float: left;
+}
+#hd_sec1 {
+	width: 870px;
+	height: 105px;
+	margin-top: 5px;
+	float:right;
+}
+#submenu {
+	float: right;
+}
+#submenu a {
+	text-decoration: none;
+	color: white;
+	padding-right: 5px;
+}
+#submenu a:hover {color:orange;}
+#submenu .sitem {
+	display: none;
+}
+#submenu .sitem.on {
+	display: inline;
+}
+.item a {
+	text-decoration: none;
+	color: white;
+}
+ul {list-style:none;}
+a {vertical-align:top; text-decoration:none;}
+a:hover {color:orange;}
+#gnb {position:relative; width:870px; height: 65px; margin-top: 40px;}
+#gnb:after {content:" "; display:block; clear:both;}
+#gnb .item {width: 160px; text-align: center; float: left; margin-right:10px; height:20px;}
+#gnb .item .menu {float:left; position:relative; width:160px; height:20px;}
+#gnb .item .menu span {position:absolute; width:100%; height:20px;}
+#gnb .item .sub {display:none; float:left; position:relative; padding:10px 0; font-size:12px;}
+#gnb .item .sub li {float: left; margin:0 10px; text-align: center; }
+#gnb .item #sub1 {width: 680px; margin-left: 0px;}
+#gnb .item #sub2 {width: 520px; margin-left: -150px;}
+#gnb .item #sub3 {width: 550px; margin-left: -170px;}
+#gnb .item #sub4 {width: 180px; margin-left: 0px;}
+#gnb .item #sub5 {width: 500px; margin-left: -185px;}
+#gnb .item.on .sub {display:block;}
+#gnb .item li { float: left; margin: 0 10px; }
+/* terms part */
+.termsDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 9999;
+	opacity:0;
+	-webkit-transition: 600ms ease-in;
+	-moz-transition: 600ms ease-in;
+	transition: 600ms ease-in;
+	pointer-events: none;
+}
+.termsDialog:target {
+	top:0;
+	opacity:1;
+	pointer-events: auto;
+	background-color: rgba(0,0,0,0.8);
+}
+.termsDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 6% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: rgba(100, 185, 185, 1);
+}
+.tcClass {
+	font-size: 12px;
+	line-height: 18px;
+	width: auto;
+	border: 1px solid #d9d9d9;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 100px;
+	margin: 7px 0;
+}
+.agreeChk {
+	font-size: 12px;
+}
+.btnAlignC {
+	width: 140px;
+	height: 40px;
+	margin: 0 auto;
+	background-color: #2A78C3;
+	forn-size: 14px;
+	text-align: center;
+	margin-top: 30px;
+}
+#btnAgree {
+	width: 100%;
+	height: 100%;
+	background-color: inherit;
+	color: white;
+}
+#agree12, #agree22 {
+	margin-left: 10px;
+}
+.agreeClass {
+	display: inline;
+}
+.closeBtn{
+	width: 25px;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+/* join */
+.joinDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: 600ms ease-in;
+	-moz-transition: 600ms ease-in;
+	transition: 600ms ease-in;
+	pointer-events: none;
+}
+.joinDialog:target {
+	top:0;
+	opacity:1;
+	pointer-events: auto;
+}
+.joinDialog > div {
+	width: 440px;
+	position: relative;
+	margin: 7% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: rgba(100, 185, 185, 1);
+}
+.joinDialog form {
+	line-height: 1.5em;
+	margin-top: 30px;
+}
+#idCheck {
+	padding: 5px;
+	background-color: #e3e3e3;
+}
+#idimg3, #jidimg, .jpwimg {
+	float: right;
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+}
+.btnSub {
+	width: 300px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.btnSub input:FIRST-CHILD {
+	width: 200px;
+	font-size: 14px;
+	padding: 10px;
+	background-color: #2A78C3;
+	color: white;
+	border-radius: 5px 5px 5px 5px;
+	margin-left:30px;
+}
+.title .loginText {
+	width: 95%;
+	display:inline-block;
+	float: left;
+	font-size: 24px;
+	text-align: center;
+}
+.title .loginExit {
+	width:5%;
+	display: inline-block;
+	float:right:
+}
+/* login part */
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity:0;
+	-webkit-transition: 600ms ease-in;
+	-moz-transition: 600ms ease-in;
+	transition: 600ms ease-in;
+	pointer-events: none;
+	z-index: 9999;
+}
+.modalDialog:target {
+	top:0;
+	opacity:1;
+	pointer-events: auto;
+	z-index: 9999;
+	background-color: rgba(0,0,0,0.8);
+}
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: rgba(100, 185, 185, 1);
+}
+.input-wrap {
+	clear:both;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.input img {
+	display: inline-block;
+	float: right;
+	width: 20px;
+	height: 20px;
+}
+.sign-link a {
+	font-style: normal;
+	color: #0071bf;
+	font-size: 12px;
+	cursor: auto;
+}
+.btn-wrap {
+	clear: both;
+	width: 300px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.btn-wrap input {
+	width: 200px;
+	margin-left:50px;
+	font-size: 14px;
+	padding: 10px;
+	background-color: #2A78C3;
+	color: white;
+	border-radius: 5px 5px 5px 5px;
+}
+#signup-wrap {
+	width:300px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-left: 30px;
+}
+.sign-up-btn {
+	width: 100%;
+	background-color: gray;
+}
+/* profile 변경 part */
+.profileDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity:0;
+	-webkit-transition: 600ms ease-in;
+	-moz-transition: 600ms ease-in;
+	transition: 600ms ease-in;
+	pointer-events: none;
+	z-index: 9999;
+}
+.profileDialog:target {
+	top:0;
+	opacity:1;
+	pointer-events: auto;
+	z-index: 9999;
+	background-color: rgba(0,0,0,0.8);
+}
+.profileDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 2% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: rgba(100, 185, 185, 1);
+}

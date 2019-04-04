@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talanton.platform.mapper.PdsItemMapper">
+	<select id="listCount" resultType="int">
+	<![CDATA[
+	select count(id) from pds_item
+	]]>
+	</select>
+	
+	<select id="listCriteria" resultType="com.talanton.platform.pds.domain.PdsItem">
+	<![CDATA[
+	select *
+	from pds_item
+	]]>
+
+	<![CDATA[
+	order by id asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<insert id="create">
+		<![CDATA[
+			insert into pds_item (fileName, realPath, fileSize, description, articleId, kind)
+			values(#{fileName}, #{realPath}, #{fileSize}, #{description}, #{articleId}, #{kind})
+		]]>
+	</insert>
+	
+	<select id="read" resultType="com.talanton.platform.pds.domain.PdsItem">
+		select * from pds_item where id = #{id}
+	</select>
+</mapper>

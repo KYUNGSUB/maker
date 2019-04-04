@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talanton.platform.mapper.DbMakeMapper">
+	<select id="listMusicCount" resultType="int">
+	<![CDATA[
+	select count(_id) from tbl_music_server_info
+	]]>
+	</select>
+	
+	<select id="listCount" resultType="int">
+	<![CDATA[
+	select count(id) from music_server
+	]]>
+	</select>
+	
+	<select id="listCriteria" resultType="com.talanton.platform.dbmake.domain.MusicServer">
+	<![CDATA[
+	select *
+	from music_server
+	]]>
+
+	<![CDATA[
+	order by id asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="listMusicCriteria" resultType="com.talanton.platform.dbmake.domain.TblMusicServer">
+	<![CDATA[
+	select *
+	from tbl_music_server_info
+	]]>
+
+	<![CDATA[
+	order by _id asc
+	limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<insert id="create">
+		<![CDATA[
+			insert into music_server (pid, title_ko, author_ko, title_en, author_en, genre, play_time, file_size, file_info, url_info)
+			values(#{pid}, #{title_ko}, #{author_ko}, #{title_en}, #{author_en}, #{genre}, #{play_time}, #{file_size}, #{file_info}, ${url_info})
+		]]>
+	</insert>
+	
+	<select id="read" resultType="com.talanton.platform.dbmake.domain.MusicServer">
+		select * from music_server where id = #{id}
+	</select>
+	
+	<select id="readMusic" resultType="com.talanton.platform.dbmake.domain.TblMusicServer">
+		select * from tbl_music_server_info where _id = #{_id}
+	</select>
+</mapper>

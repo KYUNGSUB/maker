@@ -1,0 +1,3 @@
+ id   fileName       realPath                                            fileSize downloadCount description          articleId kind 
+ ---- -------------- --------------------------------------------------- -------- ------------- -------------------- --------- ---- 
+ 5033 MusicListDB.db b80bdfc9-2e14-4630-85f5-18bd15561736_MusicListDB.db 1257472              0 고전음악 듣기 DB table 1.0         0 NULL
